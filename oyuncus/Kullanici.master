@@ -1,0 +1,196 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Kullanici.master.cs" Inherits="Kullanici"  %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Oyuncus</title>
+    
+    <link href="Kullanici.css" rel="stylesheet" />
+   
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    
+    <style type="text/css">
+       
+        
+       
+        
+       
+        .auto-style1 {
+            width: 100%;
+        }
+               
+        
+       
+        
+       
+        .auto-style2 {
+            font-size: x-small;
+        }
+        .auto-style3 {
+            font-size: x-small;
+            font-weight: normal;
+        }
+               
+        
+       
+        
+       
+        </style>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="wrapper">
+       
+        
+        <header>
+           
+            <div class="logo" style="text-align: right"> 
+                <asp:Image ID="Image1" runat="server" Height="45px" ImageUrl="~/Resimler/o.png" Width="45px" />
+&nbsp;</div>
+
+            <nav>
+     <ul class="menu">
+                
+        <li>
+          <a href="Anasayfa.aspx">Anasayfa</a>
+        </li>
+        <li>
+             <a href="Oyungonder.aspx">Gönder </a>
+        </li>
+        <li>
+             <a href="Hakkimizda.aspx">Hakkımızda </a>
+        </li>
+        <li>
+            <a href="Iletisim.aspx">İletişim </a>
+        </li>
+        <li>
+            <a>Kategoriler</a>
+            <ul>
+             
+                <li class="kategori">
+                 
+            <asp:DataList ID="DataList1" runat="server" >
+                <ItemTemplate>
+                    
+                       <a href="Kategoridetay.aspx?kategoriid=<%#Eval("kategoriid")%>"> <asp:Label ID="Label1" runat="server" Text='<%# Eval("Kategoriad") %>'></asp:Label>
+                        (<asp:Label ID="Label2" runat="server" Text='<%# Eval("Kategoriadet") %>'></asp:Label>)</a>
+               
+                    </ItemTemplate>
+            </asp:DataList>
+           
+             </li>
+             
+
+         </ul>
+     </li>
+         
+         <li>
+            
+            <a href="Profil.aspx"> <asp:Label ID="profil" runat="server" Text="Profil"></asp:Label></a>
+             
+         </li>
+      <li>
+            
+            <a href="Admin.aspx"> <asp:Label ID="admin" runat="server" Text="Admin"></asp:Label></a>
+             
+         </li>
+
+    </ul>
+            </nav>
+
+            <div class="arama-wrap">
+                <%--<asp:TextBox ID="TxtArama" runat="server" ></asp:TextBox>
+                <asp:Button ID="BtnAra" runat="server"  Text="Ara" />--%>
+
+                <asp:TextBox ID="TxtArama" runat="server" CssClass="TxtArama" placeholder="arama" ></asp:TextBox>
+                <asp:Button ID="BtnArama" runat="server" CssClass="BtnArama" Text="Ara" OnClick="BtnArama_Click" Height="45px" />
+
+            </div>
+        </header>
+
+       <div class="Banner">
+          
+           <asp:Image ID="Image2" runat="server" ImageUrl="~/Resimler/header.png" class="imgbanner"/>
+          
+       </div>
+        <div class="soltaraf">
+
+            
+                <asp:Panel ID="pnlgirisekran" runat="server" CssClass="pnlgirisekran">
+                <div class="üst"> KULLANICI GİRİŞ</div>
+            
+                <div class="alt" style="height: 210px">
+                    
+                    <span>Kullanıcı Adı:</span>
+                    <asp:TextBox ID="TxtKullaniciAdi" CssClass="txtbox" placeholder="Kullanıcı Adı" runat="server"></asp:TextBox>
+                    <span>Parola:</span>
+                    <asp:TextBox ID="TxtParola"  CssClass="txtbox" runat="server" placeholder="Parola" TextMode="Password"></asp:TextBox>
+                    <asp:Button ID="BtnGiris" CssClass="Btngiris" runat="server" Text="Giriş" OnClick="BtnGiris_Click"  />
+                    <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
+                    <div style="margin-top:10px; text-align:center;"> <label>Hesabın yok mu? <a href="Kaydol.aspx">Kaydol</a></label></div>
+                    
+
+                </div>
+                    </asp:Panel>
+
+                <asp:Panel ID="pnlkullaniciad" CssClass="pnlhosgeldiniz" runat="server">
+                    <table class="auto-style1">
+                        <tr>
+                            <td>
+                                <h1>
+                                    <asp:Label ID="Label4" runat="server" Text='<%# Eval("kullaniciad") %>'></asp:Label>
+                                </h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="auto-style2">Üye olma tarihi: </span><asp:Label ID="Label5" runat="server" CssClass="auto-style3" Text='<%# Eval("kullanicitarih") %>'></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Image ID="profilfoto" runat="server" CssClass="profilfoto" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> 
+                                <asp:Button ID="btncikis" runat="server" CssClass="Btncikis" OnClick="btncikis_Click" Text="Çıkış" />
+                               
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+           
+        </div>
+       
+        
+        <div class="icerik">
+            
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"> </asp:ContentPlaceHolder>
+        </div>
+
+    </div>
+       
+       
+
+    <%--<div  CssClass="hidebr" style="margin:auto; padding-bottom:30px; margin-bottom:30px; width: 700px; background-color: white; box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.3)">
+          
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"  >
+                
+            </asp:ContentPlaceHolder>
+             </div> --%>
+    
+    
+       <div class="footer"></div>
+
+    
+    </form>
+        
+       
+     
+   
+</body>
+</html>
